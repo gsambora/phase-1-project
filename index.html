@@ -12,26 +12,27 @@
   <body>
     <script src="index.js"></script>
     <section>
-        <form>
+        <form class = "musicForm">
           <label for="musicRequest">Request a Jam:</label>
           <input id="musicRequest" type="text" placeholder="Enter song title"/>
           <input type="submit" />
         </form>
       </section>
     <div class="musicPlayer">
-        <h3>Now Playing: Drivin'</h3>
-        <img src = "https://acnhapi.com/v1/images/songs/8" alt = "K.K. Slider's Drivin' Album Cover">
+        <h3 style = "grid-row: 1">Now Playing: Drivin'</h3>
+        <img class = "album-cover" src = "https://acnhapi.com/v1/images/songs/8" alt = "K.K. Slider's Drivin' Album Cover">
         <audio 
             controls
             loop="true"
-            src="https://acnhapi.com/v1/music/8">
+            src="https://acnhapi.com/v1/music/8"
+            class = "audio">
             <a href="https://acnhapi.com/v1/music/8">Download audio</a>
         </audio>
     </div>
 
     <h2>Your Island</h2>
 <!--   background-color:#4CBB17   -->
-    <div id="current-island" style="background-image: url(https://garden.spoonflower.com/c/10488323/p/f/m/B_VsgI6-rp94sfrtNZfXXfCeGiPUg-kiHS6KhhKRFKFYBTROK5KPP8c/Animal%20Crossing%20Grass.jpg);"></div>
+    <div id="current-island" class="island"></div>
 
     <section>
       <form>

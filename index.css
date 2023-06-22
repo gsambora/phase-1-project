@@ -24,9 +24,39 @@
 
   .island{
     padding: 1rem;
-    width: stretch;
+    margin-right:340px;
+    margin-bottom:20px;
+    width: 100vw - 340px;
     height: auto;
-    display: none;
-    background: #4CBB17;
-    opacity: .8;
+    background-image: url(https://garden.spoonflower.com/c/10488323/p/f/m/B_VsgI6-rp94sfrtNZfXXfCeGiPUg-kiHS6KhhKRFKFYBTROK5KPP8c/Animal%20Crossing%20Grass.jpg);
+
+  }
+
+  .album-cover{
+    width: 200px;
+    height:auto;
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .audio{
+    width: 250px;
+    height:25px;
+    grid-row: 3;
+    justify-self: center;
+  }
+
+  .musicPlayer{
+    position: absolute;
+    top:20px;
+    right:0;
+    display: grid;
+    padding: 1rem;
+    
+  }
+  
+  .musicForm{
+    position: absolute;
+    top:5px;
+    right:0;
   }
