@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', init);
+
 
 function changeSong(name, picture, audio) {
     let player = document.querySelector(".musicPlayer");
@@ -12,39 +12,38 @@ function changeSong(name, picture, audio) {
     player.childNodes[5].childNodes[1].href = audio
 }
 
-const init = () => {
 
+document.addEventListener("DOMContentLoaded", function() {
     //MUSIC PLAYER
     const inputMusic = document.querySelectorAll("form")[0];
 
     inputMusic.addEventListener("submit", (event)=>{
         event.preventDefault();
-        console.log("song submitted")
         const inputSong = document.querySelector("input#musicRequest");
         let inputSongID = 8;
 
         fetch('https://acnhapi.com/v1/songs')
         .then((response)=>response.json())
         .then((data)=> {
-            //console.log(data)
-            //console.log(Object.values(data))
-            for (const song in Object.values(data)) {
-                const engName = Object.values(Object.values(data)[song].name)[1];
-                //console.log(engName, inputSong.value)
+
+            const allSongs = Object.values(data)
+            let newSong = Object
+
+            allSongs.forEach(function(song){
+                const engName = Object.values(song.name)[1];
                 if (engName === inputSong.value){
                     //console.log("found match!")
-                    inputSongID = song
+                    newSong = song
                 }
-            }
-            const newName = Object.values(Object.values(data)[inputSongID].name)[1];
-            const newPic = Object.values(data)[inputSongID].image_uri;
-            const newAudio = Object.values(data)[inputSongID].music_uri;
+            })
 
-            changeSong(newName, newPic, newAudio);
+            const newName = Object.values(newSong.name)[1];
+
+            changeSong(newName, newSong.image_uri, newSong.music_uri);
         })
     })
     
-};
+});
 
 
 
