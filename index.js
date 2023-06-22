@@ -18,9 +18,14 @@ function addVillager(villager, island=true){
     const newVill = document.createElement("div");
     newVill.classList.add("card");
     
-
     const villName = document.createElement("h2");
     villName.innerHTML = Object.values(villager.name)[0];
+    
+    const villIcon = document.createElement("img");
+    villIcon.src = villager.icon_uri;
+    villIcon.alt = "Icon of "+ villName.innerHTML;
+    villIcon.classList.add("villager-icon")
+    villIcon.hidden = true;
 
     const villPic = document.createElement("img");
     villPic.src = villager.image_uri;
@@ -39,16 +44,39 @@ function addVillager(villager, island=true){
         villAdd.id = "search_"+villName.innerHTML
         villAdd.innerHTML = "Add to island"
         
-        newVill.append(villName, villPic, villSpePers, villAdd)
+        newVill.append(villName, villIcon, villPic, villSpePers, villAdd)
 
         document.querySelector("#vill-results").append(newVill);
+        villBtns(villAdd, newVill, false)
     }
 
 }
 
-function villSearchBtns(button, villager, island=true){
+function villBtns(button, villElement, island=true, wanted=true){
     button.addEventListener("click", ()=>{
+        console.log(villElement)
+        if(island === true){
+            if(wanted === true){
+                console.log("want to remove")
+                villElement.querySelector(".villager-pic").hidden = true;
+                villElement.querySelector(".villager-icon").hidden = false;
+                villElement.querySelector("button").innerHTML = "Nevermind, I want them"
+                wanted = false
+            } else{
+                console.log("want them back")
+                villElement.querySelector(".villager-pic").hidden = false;
+                villElement.querySelector(".villager-icon").hidden = true;
+                villElement.querySelector("button").innerHTML = "Planning to remove"
+                wanted = true
+            }
+            
+        } else{
+            console.log("adding to island");
+            villElement.querySelector("button").innerHTML = "Planning to remove"
+            document.querySelector("#current-island").append(villElement);
+            island = true
 
+        }
     })
 }
 
@@ -106,6 +134,8 @@ document.addEventListener("DOMContentLoaded", function() {
             })
 
         })
+
+        //villForm.reset();
     })
 
 

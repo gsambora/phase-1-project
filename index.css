@@ -6,11 +6,27 @@
     height: 25rem;
     display: inline-grid;
     margin: 1rem 2rem;
-    box-shadow: 3px 4px #e04b52
+    box-shadow: 3px 4px #e04b52;
+    background-color: white;
   }
   
   .villager-pic {
     justify-self: center;
     height: 12rem;
     width: auto;
+  }
+
+  .villager-icon{
+    justify-self: center;
+    height: 5rem;
+    width: auto;
+  }
+
+  .island{
+    padding: 1rem;
+    width: stretch;
+    height: auto;
+    display: none;
+    background: #4CBB17;
+    opacity: .8;
   }
