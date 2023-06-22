@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hana's Project</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
 
   <body>
@@ -29,7 +30,18 @@
             <a href="https://acnhapi.com/v1/music/8">Download audio</a>
         </audio>
     </div>
-    
+
+    <div id="current-island"></div>
+
+    <section>
+      <form>
+        <label for="villSearch">Find villagers:</label>
+        <input id="villSearch" type="text" placeholder="Enter villager name"/>
+        <input type="submit" />
+      </form>
+    </section>
+
+    <div id="vill-results"></div>
   </body>
 
 </html>

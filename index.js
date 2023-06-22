@@ -1,5 +1,3 @@
-
-
 function changeSong(name, picture, audio) {
     //Updates "Now Playing:" title, album cover, and audio player
     let player = document.querySelector(".musicPlayer");
@@ -14,6 +12,45 @@ function changeSong(name, picture, audio) {
     player.childNodes[5].childNodes[1].href = audio
 }
 
+function addVillager(villager, island=true){
+    //Adds villager cards either to current island or search results
+    console.log(villager)
+    const newVill = document.createElement("div");
+    newVill.classList.add("card");
+    
+
+    const villName = document.createElement("h2");
+    villName.innerHTML = Object.values(villager.name)[0];
+
+    const villPic = document.createElement("img");
+    villPic.src = villager.image_uri;
+    villPic.alt = "Picture of "+ villName.innerHTML;
+    villPic.classList.add("villager-pic")
+
+    const villSpePers = document.createElement("h4");
+    villSpePers.innerHTML = villager.personality + " " + villager.species
+
+    //newVill.id="card-"+villName.innerHTML;
+
+    if(island === true){
+        document.querySelector("#current-island").append(newVil);
+    } else{
+        const villAdd = document.createElement("button");
+        villAdd.id = "search_"+villName.innerHTML
+        villAdd.innerHTML = "Add to island"
+        
+        newVill.append(villName, villPic, villSpePers, villAdd)
+
+        document.querySelector("#vill-results").append(newVill);
+    }
+
+}
+
+function villSearchBtns(button, villager, island=true){
+    button.addEventListener("click", ()=>{
+
+    })
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     //MUSIC PLAYER
@@ -48,6 +85,30 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     })
     
+    //Villager search by name
+    const villForm = document.querySelectorAll("form")[1];
+    
+    villForm.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        const inputVill = document.querySelector("input#villSearch")
+        
+        fetch('https://acnhapi.com/v1/villagers')
+        .then((response)=>response.json())
+        .then((data)=>{
+            const allVillagers = Object.values(data);
+            let newVillager = Object;
+
+            allVillagers.forEach(function(villager){
+                villName = Object.values(villager.name)[0];
+                if(villName === inputVill.value){
+                    addVillager(villager, false)
+                }
+            })
+
+        })
+    })
+
+
 });
 
 
