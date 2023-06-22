@@ -1,9 +1,25 @@
+document.addEventListener('DOMContentLoaded', init);
+
+function changeSong(name, picture, audio) {
+    let player = document.querySelector(".musicPlayer");
+    // console.log(player)
+    // console.log(player.childNodes)
+
+    player.childNodes[1].innerHTML = "Now Playing: " + name
+    player.childNodes[3].src = picture
+    player.childNodes[3].alt = "K.K. Slider's "+ name +" Album Cover"
+    player.childNodes[5].src = audio
+    player.childNodes[5].childNodes[1].href = audio
+}
+
 const init = () => {
+
+    //MUSIC PLAYER
     const inputMusic = document.querySelectorAll("form")[0];
 
     inputMusic.addEventListener("submit", (event)=>{
         event.preventDefault();
-        //console.log("song submitted")
+        console.log("song submitted")
         const inputSong = document.querySelector("input#musicRequest");
         let inputSongID = 8;
 
@@ -30,25 +46,5 @@ const init = () => {
     
 };
 
-function changeSong(name, picture, audio) {
-    console.log(name, picture, audio)
-    let player = document.getElementsByClassName("musicPlayer");
-    player.remove();
-    // player.innerHTML = "";
-    // document.getElementsByClassName("musicPlayer").innerHTML = `
-    //     <div>
-    //         <h3>Now Playing: ${name}</h3>
-    //         <img src = "${picture}" alt = "K.K. Slider's ${name} Album Cover">
-    //         <audio 
-    //             controls
-    //             loop="true"
-    //             src="${audio}">
-    //             <a href="${audio}">Download audio</a>
-    //         </audio>
-    //     </div>
 
-    // `
 
-}
-
-document.addEventListener('DOMContentLoaded', init);
