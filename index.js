@@ -180,6 +180,18 @@ function villBtns(button, villElement, island=true, wanted=true){
                 villElement.querySelector(".villager-icon").hidden = false;
                 villElement.querySelector("button").innerHTML = "Nevermind, I want them"
                 wanted = false
+
+                //Create button to remove completely
+                delBtn = document.createElement("button")
+                delBtn.classList.add("button")
+                delBtn.innerHTML = "They moved out!"
+                villElement.append(delBtn)
+                
+                //Remove button will fully remove from island
+                delBtn.addEventListener("click", ()=>{
+                    villElement.remove();
+                })
+
             } else{
                 //Villager was unwanted, but we are changing to wanted status (showing portrait)
                 villElement.querySelector(".villager-pic").hidden = false;
