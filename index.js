@@ -1,3 +1,6 @@
+//Search status 0 = name, 1 = personality, 2 = species
+let searchStatus = 0;
+
 //Main function is called after DOM content is loaded
 document.addEventListener("DOMContentLoaded", function() {
     //MUSIC PLAYER
@@ -32,14 +35,39 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     })
     
-    //VILLAGER SEARCH - NAME
+    //MAKE VILLAGER SEARCH OPTION BUTTONS
+    const searchName = document.createElement("button")
+    searchName.innerHTML = "Name"
+    searchName.style = "grid-column: 1"
+    searchName.classList.add("search-btn")
+    searchName.id = "search-0";
+
+    const searchPers = document.createElement("button")
+    searchPers.innerHTML = "Personality"
+    searchPers.style = "grid-column: 2"
+    searchPers.classList.add("button")
+    searchPers.id = "search-1";
+
+    const searchSpec = document.createElement("button")
+    searchSpec.innerHTML = "Species"
+    searchSpec.style = "grid-column: 3"
+    searchSpec.classList.add("button")
+    searchSpec.id = "search-2";
+
+    srBtns([searchName, searchPers, searchSpec])
+
+    document.querySelector("#search-by").append(searchName, searchPers, searchSpec)
+
+    //VILLAGER SEARCH
     const villForm = document.querySelectorAll("form")[1];
     
     villForm.addEventListener("submit", (event)=>{
         event.preventDefault();
+
+        //Reset results
         document.querySelector("#vill-results").innerHTML = '';
         const inputVill = document.querySelector("input#villSearch")
-        
+
         fetch('https://acnhapi.com/v1/villagers')
         .then((response)=>response.json())
         .then((data)=>{
@@ -58,11 +86,12 @@ document.addEventListener("DOMContentLoaded", function() {
             //Reset form
             villForm.reset();
         })
-
     })
 
 
 });
+
+//HELPER FUNCTIONS
 
 //Updates "Now Playing:" title, album cover, and audio player
 function changeSong(name, picture, audio) {
@@ -79,7 +108,7 @@ function changeSong(name, picture, audio) {
 }
 
 //Adds villager cards to search results
-function addVillager(villager, island=true){   
+function addVillager(villager){   
     console.log(villager)
     const newVill = document.createElement("div");
     newVill.classList.add("card");
@@ -95,7 +124,7 @@ function addVillager(villager, island=true){
     villIcon.classList.add("villager-icon")
     villIcon.hidden = true;
 
-    //Picture
+    //Picture - shows when villager is wanted/first created
     const villPic = document.createElement("img");
     villPic.src = villager.image_uri;
     villPic.alt = "Picture of "+ villName.innerHTML;
@@ -109,6 +138,7 @@ function addVillager(villager, island=true){
     const villAdd = document.createElement("button");
     villAdd.id = "search_"+villName.innerHTML
     villAdd.innerHTML = "Add to island"
+    villAdd.classList.add("button")
 
     //Add to DOM
     newVill.append(villName, villIcon, villPic, villSpePers, villAdd)
@@ -148,6 +178,33 @@ function villBtns(button, villElement, island=true, wanted=true){
             document.querySelector("#current-island").append(villElement);
             island = true
         }
+    })
+}
+
+//Handle search mode button events
+function srBtns(allButtons){
+    allButtons.forEach((button)=>{
+        button.addEventListener("click", ()=>{
+            const currentBtn = document.querySelector("#search-"+searchStatus);
+            currentBtn.classList.remove("search-btn")
+            currentBtn.classList.add("button")
+
+            button.classList.remove("button")
+            button.classList.add("search-btn")
+
+            const form = document.querySelector("#villSearch")
+
+            if(button.id === "search-0"){
+                form.placeholder = "Enter villager name"
+                searchStatus = 0;
+            } if(button.id === "search-1"){
+                form.placeholder = "Enter personality type"
+                searchStatus = 1;
+            } if (button.id === "search-2"){
+                form.placeholder = "Enter animal species"
+                searchStatus = 2;
+            }
+        })
     })
 }
 

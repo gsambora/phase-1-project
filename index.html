@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hana's Project</title>
     <link rel="stylesheet" href="index.css" />
+    <style>
+      body{
+        font-family: 'Tahoma', sans-serif
+      }
+    </style>
   </head>
 
   <body>
@@ -15,7 +20,7 @@
         <form class = "musicForm">
           <label for="musicRequest">Request a Jam:</label>
           <input id="musicRequest" type="text" placeholder="Enter song title"/>
-          <input type="submit" />
+          <input class= "button" type="submit" />
         </form>
       </section>
     <div class="musicPlayer">
@@ -34,11 +39,13 @@
 <!--   background-color:#4CBB17   -->
     <div id="current-island" class="island"></div>
 
+    <h2>Search For Villagers</h2>
+    <div id="search-by" class = "search-by"></div>
     <section>
       <form>
         <label for="villSearch">Find villagers:</label>
         <input id="villSearch" type="text" placeholder="Enter villager name"/>
-        <input type="submit" />
+        <input class= "button" type="submit" />
       </form>
     </section>
 

@@ -1,12 +1,12 @@
 .card {
     text-align: center;
-    border: rgb(87, 163, 255) solid 1px;
+    border: burlywood solid 2px;
     padding: 1rem;
     width: 15rem;
     height: 25rem;
     display: inline-grid;
     margin: 1rem 2rem;
-    box-shadow: 3px 4px #e04b52;
+    box-shadow: 3px 4px #FFE6EE;
     background-color: white;
   }
   
@@ -44,6 +44,7 @@
     height:25px;
     grid-row: 3;
     justify-self: center;
+    margin-top: 10px;
   }
 
   .musicPlayer{
@@ -52,11 +53,35 @@
     right:10px;
     display: grid;
     padding: 1rem;
-    
+    text-align: center;
   }
   
   .musicForm{
     position: absolute;
-    top:5px;
-    right:0;
+    top:10px;
+    right:10px;
   }
+  
+.button{
+    background-color: #FFE6EE;
+    border-radius: 20px;
+    padding:5px;
+    border-color: burlywood;
+    width:fit-content;
+    justify-self: center;
+}
+
+.search-by{
+    display: grid;
+    width:fit-content;
+    margin:5px;
+}
+
+.search-btn{
+    background-color: #28b45b;
+    border-radius: 20px;
+    padding:5px;
+    border-color: #0c944c;
+    width:fit-content;
+    justify-self: center;
+}
