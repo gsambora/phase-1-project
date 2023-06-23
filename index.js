@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
             allSongs.forEach(function(song){
                 const engName = Object.values(song.name)[1];
                 if (engName === inputSong.value){
-                    //console.log("found match!")
+                    console.log("found match!")
                     newSong = song;
+
+                    //Implement changes with changeSong function
+                    const newName = Object.values(newSong.name)[1];
+                    changeSong(newName, newSong.image_uri, newSong.music_uri);
                 }
             })
-
-            //Implement changes with changeSong function
-            const newName = Object.values(newSong.name)[1];
-            changeSong(newName, newSong.image_uri, newSong.music_uri);
 
             //Reset form 
             inputMusic.reset();
@@ -106,8 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
             villForm.reset();
         })
     })
-
-
 });
 
 //HELPER FUNCTIONS
@@ -195,6 +193,8 @@ function villBtns(button, villElement, island=true, wanted=true){
             //Clicking will move villager to the user's island with wanted status
             villElement.querySelector("button").innerHTML = "Planning to remove"
             document.querySelector("#current-island").append(villElement);
+            console.log(villElement.childNodes[0])
+            villElement.childNodes[0].innerHTML = villElement.childNodes[0].innerHTML + " 🏝️"
             island = true
         }
     })
@@ -204,15 +204,19 @@ function villBtns(button, villElement, island=true, wanted=true){
 function srBtns(allButtons){
     allButtons.forEach((button)=>{
         button.addEventListener("click", ()=>{
+            //Make button that is currently green a regular button
             const currentBtn = document.querySelector("#search-"+searchStatus);
             currentBtn.classList.remove("search-btn")
             currentBtn.classList.add("button")
 
+            //Make clicked button green
             button.classList.remove("button")
             button.classList.add("search-btn")
 
             const form = document.querySelector("#villSearch")
 
+            //Change form placeholder to match clicked button
+            //Change search status: 0 = name, 1 = personality, 2 = species
             if(button.id === "search-0"){
                 form.placeholder = "Enter villager name"
                 searchStatus = 0;
