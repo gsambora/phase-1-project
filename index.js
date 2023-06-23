@@ -34,29 +34,35 @@ document.addEventListener("DOMContentLoaded", function() {
             inputMusic.reset();
         })
     })
-    
+
     //MAKE VILLAGER SEARCH OPTION BUTTONS
+    //Name
     const searchName = document.createElement("button")
     searchName.innerHTML = "Name"
     searchName.style = "grid-column: 1"
     searchName.classList.add("search-btn")
     searchName.id = "search-0";
 
+    //Personality
     const searchPers = document.createElement("button")
     searchPers.innerHTML = "Personality"
     searchPers.style = "grid-column: 2"
     searchPers.classList.add("button")
     searchPers.id = "search-1";
 
+    //Species
     const searchSpec = document.createElement("button")
     searchSpec.innerHTML = "Species"
     searchSpec.style = "grid-column: 3"
     searchSpec.classList.add("button")
     searchSpec.id = "search-2";
 
+    //Create element listeners
     srBtns([searchName, searchPers, searchSpec])
 
+    //Add to DOM
     document.querySelector("#search-by").append(searchName, searchPers, searchSpec)
+
 
     //VILLAGER SEARCH
     const villForm = document.querySelectorAll("form")[1];
@@ -75,12 +81,25 @@ document.addEventListener("DOMContentLoaded", function() {
             const allVillagers = Object.values(data);
             
             //Iterate through array to find the villager that matches input
+            //If there is a match, call addVillager function
             allVillagers.forEach(function(villager){
-                villName = Object.values(villager.name)[0];
-                if(villName === inputVill.value){
-                    //If there is a match, add the villager to the search results
-                    addVillager(villager, false)
-                }
+                //search by name
+                if(searchStatus === 0){
+                    villName = Object.values(villager.name)[0];
+                    if(villName === inputVill.value){
+                        
+                        addVillager(villager)
+                    }}
+                //search by personality
+                if(searchStatus === 1){
+                    if(villager.personality === inputVill.value){
+                        addVillager(villager)
+                    }}
+                //search by species
+                else{
+                    if(villager.species === inputVill.value){
+                        addVillager(villager)
+                    }}
             })
 
             //Reset form
