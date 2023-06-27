@@ -72,6 +72,16 @@
     justify-self: center;
 }
 
+.del-btn{
+  background-color: #FFE6EE;
+  border-radius: 20px;
+  padding:5px;
+  border-color: burlywood;
+  width:fit-content;
+  height:fit-content;
+  justify-self: center;
+}
+
 .search-by{
     display: grid;
     width:fit-content;

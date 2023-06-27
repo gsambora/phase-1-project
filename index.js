@@ -183,7 +183,7 @@ function villBtns(button, villElement, island=true, wanted=true){
 
                 //Create button to remove completely
                 delBtn = document.createElement("button")
-                delBtn.classList.add("button")
+                delBtn.classList.add("del-btn")
                 delBtn.innerHTML = "They moved out!"
                 villElement.append(delBtn)
                 
@@ -197,6 +197,7 @@ function villBtns(button, villElement, island=true, wanted=true){
                 villElement.querySelector(".villager-pic").hidden = false;
                 villElement.querySelector(".villager-icon").hidden = true;
                 villElement.querySelector("button").innerHTML = "Planning to remove"
+                villElement.querySelector(".del-btn").remove();
                 wanted = true
             }
             
